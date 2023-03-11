@@ -30,7 +30,7 @@ return require('packer').startup(function(use)
     use("ThePrimeagen/harpoon")
     use("nvim-lua/plenary.nvim")
     use("tpope/vim-fugitive")
-
+    use {'numToStr/Comment.nvim'}
     use {
         'VonHeikemen/lsp-zero.nvim',
         requires = {
@@ -57,5 +57,6 @@ return require('packer').startup(function(use)
         config = function() require("nvim-autopairs").setup {} end
     }
     use('windwp/nvim-ts-autotag')
-
+    -- VimTex
+    use 'lervag/vimtex'
 end)
