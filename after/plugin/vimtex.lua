@@ -1,6 +1,6 @@
 --vim.g.vimtex_view_method = "SumatraPDF"
-vim.g.vimtex_view_general_viewer = "SumatraPDF"
-vim.g.vimtex_view_general_options = '-reuse-instance -forward-search @tex @line @pdf'
+vim.g.vimtex_view_general_viewer = "zathura"
+--vim.g.vimtex_view_general_options = '-reuse-instance -forward-search @tex @line @pdf'
 vim.g.vimtex_view_forward_search_on_start = true
 vim.g.vimtex_toc_config = {
     mode = 1,
@@ -16,4 +16,3 @@ vim.g.vimtex_toc_config = {
     indent_levels = 1,
     todo_sorted = 1,
 }
-vim.g.vimtex_callback_progpath = 'wsl nvim'

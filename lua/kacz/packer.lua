@@ -24,6 +24,7 @@ return require('packer').startup(function(use)
     use("nvim-treesitter/nvim-treesitter", {
         run = ":TSUpdate"
     })
+    use 'nvim-treesitter/nvim-treesitter-context'
     use("nvim-treesitter/playground")
     use("mbbill/undotree")
     --For harpoon!
@@ -59,4 +60,6 @@ return require('packer').startup(function(use)
     use('windwp/nvim-ts-autotag')
     -- VimTex
     use 'lervag/vimtex'
+    -- Markdown preview
+    use({ "iamcco/markdown-preview.nvim", run = "cd app && npm install", setup = function() vim.g.mkdp_filetypes = { "markdown" } end, ft = { "markdown" }, })
 end)
