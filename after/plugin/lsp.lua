@@ -28,6 +28,9 @@ local cmp_mappings = lsp.defaults.cmp_mappings({
   ['<C-r>'] = cmp.mapping.select_prev_item(cmp_select),
   ['<C-t>'] = cmp.mapping.select_next_item(cmp_select),
   ['<C-y>'] = cmp.mapping.confirm({ select = true }),
+  -- Scroll up and down in the completion documentation
+  ['<C-u>'] = cmp.mapping.scroll_docs(-4),
+  ['<C-d>'] = cmp.mapping.scroll_docs(4),
   ["<C-Space>"] = cmp.mapping.complete(),
 })
 
@@ -76,3 +79,5 @@ lsp.setup()
 vim.diagnostic.config({
     virtual_text = true,
 })
+
+vim.filetype.add({ extension = { templ = "templ" } })
