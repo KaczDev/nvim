@@ -3,11 +3,11 @@ local lsp = require("lsp-zero")
 lsp.preset("recommended")
 
 lsp.ensure_installed({
-  'tsserver',
-  'eslint',
---  'sumneko_lua',
-  'rust_analyzer',
-  'pyright'
+    'tsserver',
+    'eslint',
+    --  'sumneko_lua',
+    'rust_analyzer',
+    'pyright'
 })
 
 -- Fix Undefined global 'vim'
@@ -23,15 +23,15 @@ lsp.ensure_installed({
 
 
 local cmp = require('cmp')
-local cmp_select = {behavior = cmp.SelectBehavior.Select}
+local cmp_select = { behavior = cmp.SelectBehavior.Select }
 local cmp_mappings = lsp.defaults.cmp_mappings({
-  ['<C-r>'] = cmp.mapping.select_prev_item(cmp_select),
-  ['<C-t>'] = cmp.mapping.select_next_item(cmp_select),
-  ['<C-y>'] = cmp.mapping.confirm({ select = true }),
-  -- Scroll up and down in the completion documentation
-  ['<C-u>'] = cmp.mapping.scroll_docs(-4),
-  ['<C-d>'] = cmp.mapping.scroll_docs(4),
-  ["<C-Space>"] = cmp.mapping.complete(),
+    ['<C-r>'] = cmp.mapping.select_prev_item(cmp_select),
+    ['<C-t>'] = cmp.mapping.select_next_item(cmp_select),
+    ['<C-y>'] = cmp.mapping.confirm({ select = true }),
+    -- Scroll up and down in the completion documentation
+    ['<C-u>'] = cmp.mapping.scroll_docs(-4),
+    ['<C-d>'] = cmp.mapping.scroll_docs(4),
+    ["<C-Space>"] = cmp.mapping.complete(),
 })
 
 -- disable completion with tab
@@ -40,7 +40,7 @@ local cmp_mappings = lsp.defaults.cmp_mappings({
 --cmp_mappings['<S-Tab>'] = nil
 
 lsp.setup_nvim_cmp({
-  mapping = cmp_mappings
+    mapping = cmp_mappings
 })
 
 lsp.set_preferences({
@@ -51,33 +51,48 @@ lsp.set_preferences({
         hint = 'H',
         info = 'I'
     }
-    , configure_diagnostics=true
+    ,
+    configure_diagnostics = true
 })
 
 lsp.on_attach(function(client, bufnr)
-  local opts = {buffer = bufnr, remap = false}
+    local opts = { buffer = bufnr, remap = false }
 
-  if client.name == "eslint" then
-      vim.cmd.LspStop('eslint')
-      return
-  end
+    if client.name == "eslint" then
+        vim.cmd.LspStop('eslint')
+        return
+    end
 
-  vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
-  vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
-  vim.keymap.set("n", "<leader>vws", vim.lsp.buf.workspace_symbol, opts)
-  vim.keymap.set("n", "<leader>vd", vim.diagnostic.open_float, opts)
-  vim.keymap.set("n", "[d", vim.diagnostic.goto_next, opts)
-  vim.keymap.set("n", "]d", vim.diagnostic.goto_prev, opts)
-  vim.keymap.set("n", "<leader>vca", vim.lsp.buf.code_action, opts)
-  vim.keymap.set("n", "<leader>vrr", vim.lsp.buf.references, opts)
-  vim.keymap.set("n", "<leader>vrn", vim.lsp.buf.rename, opts)
-  vim.keymap.set("i", "<C-h>", vim.lsp.buf.signature_help, opts)
+    vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
+    vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
+    vim.keymap.set("n", "<leader>vws", vim.lsp.buf.workspace_symbol, opts)
+    vim.keymap.set("n", "<leader>vd", vim.diagnostic.open_float, opts)
+    vim.keymap.set("n", "[d", vim.diagnostic.goto_next, opts)
+    vim.keymap.set("n", "]d", vim.diagnostic.goto_prev, opts)
+    vim.keymap.set("n", "<leader>vca", vim.lsp.buf.code_action, opts)
+    vim.keymap.set("n", "<leader>vrr", vim.lsp.buf.references, opts)
+    vim.keymap.set("n", "<leader>vrn", vim.lsp.buf.rename, opts)
+    vim.keymap.set("i", "<C-h>", vim.lsp.buf.signature_help, opts)
 end)
-
-lsp.setup()
 
 vim.diagnostic.config({
     virtual_text = true,
 })
 
 vim.filetype.add({ extension = { templ = "templ" } })
+
+lsp.setup()
+
+local lspconfig = require('lspconfig')
+
+lspconfig.html.setup({
+    on_attach = on_attach,
+    capabilities = capabilities,
+    filetypes = { "html", "templ" },
+})
+
+lspconfig.htmx.setup({
+    on_attach = on_attach,
+    capabilities = capabilities,
+    filetypes = { "html", "templ" },
+})
