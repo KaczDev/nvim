@@ -1,3 +1,26 @@
+-- local lsp = require("lsp-zero")
+--
+-- -- lsp.preset("recommended")
+--
+-- -- lsp.ensure_installed({
+-- --     'tsserver',
+-- --     'eslint',
+-- --     'rust_analyzer',
+-- --     'pyright'
+-- -- })
+--
+-- -- Fix Undefined global 'vim'
+-- -- lsp.configure('sumneko_lua', {
+-- --     settings = {
+-- --         Lua = {
+-- --             diagnostics = {
+-- --                 globals = { 'vim' }
+-- --             }
+-- --         }
+-- --     }
+-- -- })
+--
+--
 -- local cmp = require('cmp')
 -- local cmp_select = { behavior = cmp.SelectBehavior.Select }
 -- local cmp_mappings = lsp.defaults.cmp_mappings({
@@ -50,6 +73,30 @@
 --     vim.keymap.set("n", "<leader>vrn", vim.lsp.buf.rename, opts)
 --     vim.keymap.set("i", "<C-h>", vim.lsp.buf.signature_help, opts)
 -- end)
+--
+-- vim.diagnostic.config({
+--     virtual_text = true,
+-- })
+--
+-- vim.filetype.add({ extension = { templ = "templ" } })
+--
+-- lsp.setup()
+--
+-- local lspconfig = require('lspconfig')
+--
+-- lspconfig.html.setup({
+--     on_attach = on_attach,
+--     capabilities = capabilities,
+--     filetypes = { "html", "templ" },
+-- })
+--
+-- lspconfig.htmx.setup({
+--     on_attach = on_attach,
+--     capabilities = capabilities,
+--     filetypes = { "html", "templ" },
+-- })
+--
+--
 --MASON CONFIG
 require('mason').setup({})
 require('mason-lspconfig').setup({
