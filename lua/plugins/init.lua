@@ -34,7 +34,8 @@ return {
 	},
 	{
 		'nvim-telescope/telescope.nvim',
-		dependencies = { 'nvim-lua/plenary.nvim' }
+		dependencies = { 'nvim-lua/plenary.nvim' },
+		vscode=true
 	},
 	{
 		"nvim-treesitter/nvim-treesitter"
@@ -44,7 +45,8 @@ return {
 	{
 		"ThePrimeagen/harpoon",
 		branch = "harpoon2",
-		dependencies = { "nvim-lua/plenary.nvim" }
+		dependencies = { "nvim-lua/plenary.nvim" },
+		vscode=true
 	},
 	{ "github/copilot.vim" },
 	{

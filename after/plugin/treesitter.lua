@@ -1,14 +1,17 @@
-require'nvim-treesitter.configs'.setup {
-  -- A list of parser names, or "all"
-  ensure_installed = { "vimdoc", "javascript", "typescript", "lua", "rust", "ruby", "bash" },
-    sync_install = false,
-    auto_install = true,
+	require 'nvim-treesitter.configs'.setup {
+		-- A list of parser names, or "all"
+		ensure_installed = { "vimdoc", "javascript", "typescript", "lua", "rust", "ruby", "bash" },
+		sync_install = false,
+		auto_install = true,
 
-    highlight = {
-        enable = true,
-        additional_vim_regex_highlighting = false,
-    },
-}
+		highlight = {
+			enable = true,
+			additional_vim_regex_highlighting = false,
+		},
+	}
+	vim.keymap.set("n", "[c", function()
+		require("treesitter-context").go_to_context(vim.v.count1)
+	end, { silent = true })
 
 -- require'nvim-treesitter.configs'.setup {
 --   -- A list of parser names, or "all"
@@ -30,7 +33,3 @@ require'nvim-treesitter.configs'.setup {
 --   }
 -- }
 --
-
-vim.keymap.set("n", "[c", function()
-  require("treesitter-context").go_to_context(vim.v.count1)
-end, { silent = true })
